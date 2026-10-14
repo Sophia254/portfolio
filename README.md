@@ -10,8 +10,6 @@ and web development. The portfolio lets a visitor quickly discover who I am, my 
 my projects, my education and experience, and my contact information. The site adapts to desktop,
 tablet and smartphone screens.
 
-Live website (GitHub Pages, optional): [https://sophia254.github.io/portfolio/](https://sophia254.github.io/portfolio/)
-
 ## Technologies used
 - **HTML5**: semantic structure (`header`, `nav`, `main`, `section`, `article`, `footer`)
 - **CSS3**: CSS variables, Flexbox, Grid, media queries (mobile-first approach)
