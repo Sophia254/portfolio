@@ -1,0 +1,239 @@
+/* =========================================================
+   Portfolio: style.css
+   Concept: a video-editing timeline (Sofia edits videos).
+   Mobile-first: base = smartphone, then tablet (>= 768px)
+   and desktop (>= 1024px).
+   ========================================================= */
+
+/* ---------- 1. Variables ---------- */
+:root {
+  --bg: #f7fbff;
+  --bg-alt: #fff3f6;
+  --paper: #ffffff;
+  --ink: #2a2542;
+  --soft: #5b5676;
+  --blue: #d4ebfa;
+  --blue-deep: #a9d6f2;
+  --pink: #ffd1dc;
+  --lavender: #d8bfd8;     /* the "little purple": accents only */
+  --error: #b3445f;
+  --line: 1.5px solid var(--ink);
+  --on-pastel: #2a2542;     /* dark text used on pastel surfaces, in both themes */
+  --tick: rgba(42,37,66,0.15);
+  --max-width: 1100px;
+  --display: "Fraunces", Georgia, serif;
+  --body: "DM Sans", "Segoe UI", Arial, sans-serif;
+  --mono: "DM Mono", "Courier New", monospace;
+}
+
+/* ---------- 2. Reset and base ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; scroll-padding-top: 70px; }
+
+body {
+  margin: 0;
+  font-family: var(--body);
+  line-height: 1.65;
+  color: var(--ink);
+  background: var(--bg);
+  counter-reset: sec;
+}
+
+h1, h2, h3 { font-family: var(--display); line-height: 1.1; margin: 0 0 0.6em; }
+h1 { font-size: 2.4rem; font-weight: 800; }
+h2 { font-size: 2rem; font-weight: 800; }
+h3 { font-size: 1.2rem; font-weight: 600; }
+p { margin: 0 0 1em; max-width: 68ch; }
+a { color: var(--ink); text-decoration-color: var(--blue-deep); text-decoration-thickness: 3px; text-underline-offset: 3px; }
+a:hover { background: var(--pink); color: var(--on-pastel); }
+img { max-width: 100%; height: auto; display: block; }
+ul { margin: 0; padding: 0; list-style: none; }
+:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }
+
+/* ---------- 3. Header and navigation ---------- */
+.site-header {
+  position: sticky; top: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0.8rem 1.2rem;
+  background: var(--bg);
+  border-bottom: var(--line);
+}
+.logo { font-family: var(--display); font-size: 1.2rem; font-weight: 800; text-decoration: none; }
+.logo:hover { background: none; }
+
+.menu-toggle, .theme-toggle {
+  font-size: 1.3rem; line-height: 1; padding: 0.3rem 0.7rem;
+  background: var(--pink); color: var(--on-pastel);
+  border: var(--line); border-radius: 8px; cursor: pointer;
+}
+
+.main-nav {
+  display: none; position: absolute; top: 100%; left: 0; right: 0;
+  background: var(--bg); border-bottom: var(--line); padding: 0.5rem 1.2rem 1rem;
+}
+.main-nav.open { display: block; }
+.main-nav a {
+  display: block; padding: 0.6rem 0;
+  font-family: var(--mono); font-size: 0.85rem; text-transform: uppercase;
+  letter-spacing: 0.08em; text-decoration: none;
+}
+
+/* ---------- 4. Sections and buttons ---------- */
+.section {
+  padding: 4rem max(1.2rem, calc((100vw - var(--max-width)) / 2));
+}
+.section-alt { background: var(--bg-alt); border-block: var(--line); }
+
+/* Section numbers via CSS counter: 01, 02, 03, 04 */
+.section h2::before {
+  counter-increment: sec;
+  content: "0" counter(sec) " /";
+  display: block; margin-bottom: 0.4rem;
+  font-family: var(--mono); font-size: 0.85rem; font-weight: 400; color: var(--soft);
+}
+
+.btn {
+  display: inline-block; margin: 0 0.5rem 0.6rem 0; padding: 0.7rem 1.4rem;
+  font: 700 1rem var(--body); color: var(--on-pastel); background: var(--pink);
+  border: var(--line); border-radius: 999px; text-decoration: none; cursor: pointer;
+  box-shadow: 3px 3px 0 var(--ink); transition: transform 0.15s, box-shadow 0.15s;
+}
+.btn:hover { background: var(--blue-deep); transform: translate(-2px, -2px); box-shadow: 5px 5px 0 var(--ink); }
+.btn-ghost { background: transparent; color: var(--ink); box-shadow: none; }
+.btn-ghost:hover { box-shadow: none; transform: none; background: var(--blue); }
+
+/* ---------- 5. Home (hero) ---------- */
+.hero {
+  display: grid; gap: 2.5rem; align-items: center;
+  padding: 4rem max(1.2rem, calc((100vw - var(--max-width)) / 2));
+  background: var(--blue); border-bottom: var(--line);
+}
+.hero-text { max-width: 760px; }
+.eyebrow { font-family: var(--mono); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--soft); }
+.mark { background: linear-gradient(transparent 62%, var(--pink) 62%); }
+.hero-subtitle { font-size: 1.15rem; color: var(--soft); margin-bottom: 1.5rem; }
+
+.header-actions { display: flex; gap: 0.5rem; }
+
+/* ---------- 6. About ---------- */
+.about-grid { display: grid; gap: 2rem; }
+.profile-img {
+  width: 200px; height: 240px; object-fit: cover; background: var(--blue);
+  border: var(--line); border-radius: 999px 999px 16px 16px;
+  box-shadow: 8px 8px 0 var(--lavender);
+}
+.about-grid h3 { margin-top: 1.5rem; font-family: var(--mono); font-size: 0.85rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.1em; }
+.timeline { border-left: var(--line); margin-left: 6px; }
+.timeline li { position: relative; padding-left: 1.2rem; margin-bottom: 0.9rem; }
+.timeline li::before {
+  content: ""; position: absolute; left: -7px; top: 0.55em;
+  width: 12px; height: 12px; background: var(--pink); border: var(--line); border-radius: 50%;
+}
+
+.languages { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+.languages li {
+  padding: 0.35rem 0.9rem; background: var(--paper);
+  border: var(--line); border-radius: 999px; font-weight: 500;
+}
+.languages span { margin-left: 0.4rem; font-family: var(--mono); font-size: 0.8rem; color: var(--soft); }
+
+/* ---------- 7. Skills: clips on a timeline ---------- */
+#skills { counter-reset: track; }
+.skills-group { margin-bottom: 2.2rem; }
+.skills-group h3 {
+  counter-increment: track; display: inline-block; margin-bottom: 1rem; padding: 0.15rem 0.7rem;
+  font-family: var(--mono); font-size: 0.8rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em;
+  background: var(--ink); color: var(--paper); border-radius: 4px;
+}
+.skills-group h3::before { content: "V" counter(track) "  "; color: var(--pink); }
+.skills-list { display: grid; gap: 1.1rem; }
+.skill-name { display: flex; justify-content: space-between; gap: 1rem; font-weight: 500; margin-bottom: 0.3rem; }
+.skill-name span { font-family: var(--mono); font-size: 0.85rem; color: var(--soft); }
+
+.skill-bar {   /* the lane, with ruler ticks every 10% */
+  height: 24px; overflow: hidden; background-color: var(--paper);
+  background-image: repeating-linear-gradient(90deg, transparent 0 calc(10% - 1px), var(--tick) calc(10% - 1px) 10%);
+  border: var(--line); border-radius: 6px;
+}
+.skill-level { height: 100%; width: 0; background: var(--blue-deep); border-right: var(--line); transition: width 1s ease; }
+.skill:nth-child(3n+2) .skill-level { background: var(--pink); }
+.skill:nth-child(3n) .skill-level { background: var(--lavender); }
+
+/* ---------- 8. Projects: numbered scenes ---------- */
+.projects-grid { counter-reset: scene; border-bottom: var(--line); }
+.project-card { padding: 1.8rem 0.5rem; border-top: var(--line); transition: background 0.2s; }
+.project-card:hover { background: var(--blue); }
+.project-card h3 { font-size: 1.6rem; }
+.project-card h3::before {
+  counter-increment: scene; content: "SCENE 0" counter(scene);
+  display: block; margin-bottom: 0.4rem; font-family: var(--mono); font-size: 0.8rem; font-weight: 500; color: var(--soft); letter-spacing: 0.1em;
+}
+.tags { font-family: var(--mono); font-size: 0.85rem; color: var(--soft); }
+.project-link { font-weight: 700; }
+
+/* ---------- 9. Contact ---------- */
+.socials { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 1.5rem; }
+.social {
+  display: inline-flex; align-items: center; gap: 0.7rem; padding: 0.7rem 1.2rem;
+  font-weight: 700; text-decoration: none; background: var(--paper);
+  border: var(--line); border-radius: 999px; box-shadow: 3px 3px 0 var(--ink);
+  transition: transform 0.15s, box-shadow 0.15s, background 0.15s;
+}
+.social svg { width: 22px; height: 22px; fill: currentColor; flex: none; }
+.social:hover { background: var(--pink); color: var(--on-pastel); transform: translate(-2px, -2px); box-shadow: 5px 5px 0 var(--ink); }
+
+/* ---------- 10. Footer ---------- */
+.site-footer { padding: 1.5rem 1.2rem; text-align: center; background: var(--ink); color: var(--blue); font-family: var(--mono); font-size: 0.8rem; }
+.site-footer p { margin: 0 auto; }
+
+/* =========================================================
+   RESPONSIVE: TABLET (>= 768px)
+   ========================================================= */
+@media (min-width: 768px) {
+  h1 { font-size: 3.2rem; }
+  h2 { font-size: 2.6rem; }
+
+  .menu-toggle { display: none; }
+  .logo { order: 1; }
+  .main-nav { order: 2; }
+  .header-actions { order: 3; }
+  .main-nav { display: block; position: static; background: none; border: none; padding: 0; }
+  .main-nav ul { display: flex; gap: 1.6rem; }
+  .main-nav a { padding: 0.3rem 0; }
+
+  .about-grid { grid-template-columns: 220px 1fr; align-items: start; }
+  .skills-list { grid-template-columns: repeat(2, 1fr); gap: 1.1rem 2rem; }
+
+  /* Each project is a row: title on the left, details on the right */
+  .project-card { display: grid; grid-template-columns: 1fr 1.7fr; column-gap: 2rem; padding: 2rem 1rem; }
+  .project-card h3 { grid-row: 1 / span 3; }
+  .project-card > :not(h3) { grid-column: 2; }
+}
+
+/* =========================================================
+   RESPONSIVE: DESKTOP (>= 1024px)
+   ========================================================= */
+@media (min-width: 1024px) {
+  .site-header { padding: 1rem 3rem; }
+  .hero { padding-block: 6rem; }
+  h1 { font-size: 4rem; }
+
+}
+
+/* ---------- Dark theme (toggled by the button in the header) ---------- */
+[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #1b1830; --bg-alt: #231f3a; --paper: #2a2645;
+  --ink: #f1ecff; --soft: #b9b2d4;
+  --blue: #243456; --blue-deep: #8cc6e8;
+  --tick: rgba(241,236,255,0.18);
+}
+[data-theme="dark"] .skills-group h3::before { color: #b0456b; }
+[data-theme="dark"] .mark { background: linear-gradient(transparent 62%, rgba(255,184,204,0.45) 62%); }
+
+/* ---------- Accessibility: reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { transition: none !important; }
+}
