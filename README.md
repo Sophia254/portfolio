@@ -39,6 +39,3 @@ portfolio/
 └── images/
     └── profile.png
 ```
-
-## Screenshots
-Screenshots are in the `screenshots/` folder (desktop, tablet, smartphone).
