@@ -1,7 +1,7 @@
 # Responsive Personal Portfolio
 
 ## Student name
-BELOUAHAR Sofia, ENSTA, SS/IA, First Semester – 2026
+BELOUAHAR Sofia, ENSTA, IA1, First Semester – 2026
 
 ## Project description
 Personal portfolio website built for TD-TP 1 of the WAMD module.
